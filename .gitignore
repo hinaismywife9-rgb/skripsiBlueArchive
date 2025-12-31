@@ -1,0 +1,109 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment (JANGAN PUSH)
+venv/
+venv_sentiment/
+ENV/
+env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model files (TERLALU BESAR - train di local)
+*.pkl
+*.h5
+*.pth
+*.onnx
+sentiment_models/
+models/
+checkpoints/
+
+# Data files (JANGAN PUSH - data sensitif)
+*.xlsx
+*.csv
+data/
+data_train.csv
+training_data.csv
+
+# Images & Visualizations (BESAR)
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Logs & Results
+*.log
+logs/
+results/
+prediction_history.json
+training_results.json
+
+# Environment variables
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Documentation (TERLALU BANYAK - pilih yang penting)
+BAB1_*.md
+COLORMAP_*.md
+COLORMAP_*.txt
+COMPLETE_PROJECT_DOCUMENTATION.md
+COMPLETION_SUMMARY.md
+DATA_BALANCING_SUMMARY.md
+DATA_BALANCING_TECHNIQUE.md
+DATA_CONDITIONS_AND_PERFORMANCE_ANALYSIS.md
+DEPLOYMENT_SUMMARY.md
+DETAILED_ANALYSIS_AND_REFERENCES.md
+DOCKER_BEST_PRACTICES.md
+DOCKER_COMPLETE_GUIDE.md
+DOCKER_DASHBOARD_SETUP.md
+DOCKER_DEPLOYMENT_COMPLETE.md
+DOCKER_FINAL_SUMMARY.txt
+DOCKER_INDEX.md
+DOCKER_INSTALLATION.md
+DOCKER_README.md
+DOCKER_SETUP_SUMMARY.md
+DOCUMENTATION_INDEX.md
+FINAL_*.md
+FINAL_*.txt
+KERANGKA_BERPIKIR_DETAIL.md
+PROJECT_SUMMARY.md
+TRAINING_RESULTS_REPORT.md
+WEB_FRAMEWORK_COMPARISON.md
+WORDCLOUD_*.md
+WORDCLOUD_*.txt
+DASHBOARD_DOCUMENTATION.md
+DASHBOARD_STATUS.txt
+README_DASHBOARD.txt
+
+# Generated files
+RESULTS_SUMMARY.csv

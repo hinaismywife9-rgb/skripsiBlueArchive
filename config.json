@@ -1,0 +1,106 @@
+{
+  "project": {
+    "name": "Sentiment Analysis - 5 Transformer Models",
+    "version": "1.0.0",
+    "description": "Training and evaluation of 5 transformer models for sentiment analysis",
+    "date_created": "2025-12-24"
+  },
+  "models": {
+    "BERT": {
+      "model_name": "bert-base-uncased",
+      "enabled": true,
+      "description": "Bidirectional Encoder Representations from Transformers",
+      "parameters": 110000000,
+      "size_mb": 440,
+      "inference_speed": "moderate",
+      "best_for": "general purpose NLP"
+    },
+    "DistilBERT": {
+      "model_name": "distilbert-base-uncased",
+      "enabled": true,
+      "description": "Distilled version of BERT (40% smaller, 60% faster)",
+      "parameters": 66000000,
+      "size_mb": 268,
+      "inference_speed": "fast",
+      "best_for": "fast inference with good accuracy"
+    },
+    "RoBERTa": {
+      "model_name": "roberta-base",
+      "enabled": true,
+      "description": "Robustly Optimized BERT Pretraining",
+      "parameters": 125000000,
+      "size_mb": 498,
+      "inference_speed": "moderate",
+      "best_for": "best for sentiment analysis"
+    },
+    "ALBERT": {
+      "model_name": "albert-base-v2",
+      "enabled": true,
+      "description": "A Lite BERT - parameter reduction technique",
+      "parameters": 11700000,
+      "size_mb": 48,
+      "inference_speed": "very_fast",
+      "best_for": "mobile and edge devices"
+    },
+    "XLNET": {
+      "model_name": "xlnet-base-cased",
+      "enabled": true,
+      "description": "eXtreme MultiLingual Net - Autoregressive pretraining",
+      "parameters": 340000000,
+      "size_mb": 1360,
+      "inference_speed": "moderate_slow",
+      "best_for": "complex context understanding"
+    }
+  },
+  "data": {
+    "input_file": "sentiment analysis BA.xlsx",
+    "cleaned_file": "sentiment analysis BA_CLEANED.xlsx",
+    "balanced_sheet": "Hybrid",
+    "label_column": "sentiment",
+    "text_column": "text",
+    "test_size": 0.2,
+    "random_state": 42
+  },
+  "training": {
+    "num_epochs": 3,
+    "per_device_train_batch_size": 16,
+    "per_device_eval_batch_size": 16,
+    "learning_rate": 5e-5,
+    "warmup_steps": 100,
+    "weight_decay": 0.01,
+    "max_length": 128,
+    "evaluation_strategy": "epoch",
+    "save_strategy": "no"
+  },
+  "inference": {
+    "batch_size": 32,
+    "use_gpu": true,
+    "truncation": true,
+    "max_length": 128
+  },
+  "output": {
+    "models_directory": "./sentiment_models",
+    "results_directory": "./results",
+    "logs_directory": "./logs",
+    "metrics_file": "training_results.json",
+    "comparison_file": "model_performance_comparison.csv",
+    "report_file": "model_training_report.txt"
+  },
+  "metrics": {
+    "compute": ["accuracy", "precision", "recall", "f1"],
+    "averaging": "weighted"
+  },
+  "ensemble": {
+    "enabled": true,
+    "voting_method": "confidence",
+    "models": ["RoBERTa", "XLNET", "BERT"]
+  },
+  "system": {
+    "min_python_version": "3.8",
+    "recommended_python_version": "3.9",
+    "min_ram_gb": 8,
+    "recommended_ram_gb": 16,
+    "gpu_support": true,
+    "gpu_memory_mb": 4096
+  }
+}
