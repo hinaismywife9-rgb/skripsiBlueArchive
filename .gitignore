@@ -53,11 +53,11 @@ data/
 data_train.csv
 training_data.csv
 
-# Images & Visualizations (BESAR)
-*.png
-*.jpg
-*.jpeg
-*.gif
+# Note: Images are now included for project documentation
+# *.png - INCLUDED
+# *.jpg
+# *.jpeg
+# *.gif
 
 # Logs & Results
 *.log
@@ -65,6 +65,8 @@ logs/
 results/
 prediction_history.json
 training_results.json
+
+# Note: PNG images are included for documentation
 
 # Environment variables
 .env

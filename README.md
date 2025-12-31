@@ -1,6 +1,53 @@
-# 5 Transformer Models untuk Sentiment Analysis
+# 🎮 Blue Archive Sentiment Analysis
+### 5 Transformer Models untuk Analisis Sentimen
 
-Proyek ini melatih dan membandingkan 5 model transformer terbaik untuk sentiment analysis.
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.6+-red.svg)](https://pytorch.org/)
+[![Transformers](https://img.shields.io/badge/Transformers-4.57+-yellow.svg)](https://huggingface.co/transformers/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+Proyek ini melatih dan membandingkan **5 model transformer state-of-the-art** untuk sentiment analysis, lengkap dengan visualisasi interaktif dan dashboard monitoring.
+
+![Training Results Dashboard](training_results_dashboard.png)
+
+---
+
+## ✨ Highlights
+
+✅ **5 Pre-trained Transformer Models**: BERT, DistilBERT, RoBERTa, ALBERT, XLNet  
+✅ **Comprehensive Visualizations**: Training curves, confusion matrices, ROC curves  
+✅ **Interactive Dashboard**: Streamlit-based monitoring  
+✅ **Production Ready**: Docker support + inference utilities  
+✅ **Data Balancing**: Multiple techniques with visual comparison  
+
+---
+
+## 📊 Project Overview
+
+### Model Performance Comparison
+
+![Model Comparison](model_comparison_bars.png)
+
+### Training Curves
+
+<table>
+<tr>
+<td width="50%">
+
+![Training Loss & Accuracy](training_loss_and_accuracy_curves.png)
+
+</td>
+<td width="50%">
+
+![ROC-AUC Curves](roc_auc_comparison.png)
+
+</td>
+</tr>
+</table>
+
+### Data Balancing Results
+
+![Data Balancing Comparison](data_balancing_comparison.png)
 
 ## 📋 Model-Model yang Digunakan
 
@@ -46,9 +93,89 @@ Proyek ini melatih dan membandingkan 5 model transformer terbaik untuk sentiment
 
 ---
 
-## 🚀 Cara Menggunakan
+## � Visualizations
 
-### 1. Install Dependencies
+### Model Performance Metrics
+
+<table>
+<ython setup.py
+# Atau manual:
+pip install -r requirements.txt
+```
+
+### 3️⃣ Prepare & Balanctrics Comparison**
+![Detailed Metrics](detailed_metrics_comparison.png)
+check_sentiment.py      # Analyze data distribution
+python balance_sentiment.py    # Clean & balance data
+```
+
+Output: `sentiment analysis BA_CLEANED.xlsx` dengan multiple balancing techniques
+
+### 4️⃣anking](model_f1_ranking.png)
+
+</td>
+</tr>
+</table>
+
+### Confusion Matrix Analysis
+
+![Confusion Matrix](confusion_matrix_comparison.png)
+
+### Data Distribution & Balancing
+
+<table>
+<tr>
+<td width="50%">
+
+**Before & After Balancing**
+![Data Balancing](data_balancing_before_after.png)
+
+</td>
+<td width="50%">
+
+**Technique Comparison**
+![Balancing Techniques](data_balancing_technique_comparison.png)
+
+</td>
+</tr>
+</table>
+
+### Word Cloud Visualizations
+
+<table>
+<tr>
+<td width="33%">
+
+**Positive Sentiment**
+![Positive Words](wordcloud_dataset_positive.png)
+
+</td>
+<td width="33%">
+
+**Negative Sentiment**
+![Negative Words](wordcloud_dataset_negative.png)
+
+</td>
+<td width="33%">
+
+**Overall Dataset**
+![All Words](wordcloud_dataset_basic.png)
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🚀 Quick Start
+
+### 1️⃣ Clone Repository
+```bash
+git clone https://github.com/YOUR_USERNAME/blue-archive-sentiment-analysis.git
+cd blue-archive-sentiment-analysis
+```
+
+### 2️⃣ Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -66,35 +193,44 @@ Ini akan menghasilkan `sentiment analysis BA_CLEANED.xlsx` dengan data yang suda
 ### 3. Train All 5 Models
 
 ```bash
-python train_transformer_models.py
-```
+⏱️ **Training Time**: 30-60 menit (tergantung GPU/CPU)
 
-Proses training akan:
-- Membuat folder `sentiment_models/` berisi semua model terlatih
-- Generate file `training_results.json` dengan hasil training
-- Generate file `model_performance_comparison.csv` dengan perbandingan
-- Generate file `model_training_report.txt` dengan laporan lengkap
+📁 **Outputs**:
+- `sentiment_models/` - Trained models
+- `training_results.json` - Performance metrics
+- `model_performance_comparison.csv` - Comparison table
 
+### 5️⃣ Run Inference & Dashboard
 **Waktu training estimate**: 30-60 menit tergantung GPU/CPU
 
 ### 4. Run Inference
-
-```bash
+# Test models
 python inference_sentiment.py
+
+# Launch interactive dashboard
+python dashboard.py
+# Or: streamlit run dashboard.py
 ```
 
-Script ini akan:
-- Load semua model yang sudah dilatih
-- Test dengan contoh texts
-- Generate `example_predictions.csv`
+🌐 Open browser: `http://localhost:8501`
 
----
+```python
+from sentiment_utils import SentimentAnalyzer
 
-## 📊 Output Files
+# Load best model (RoBERTa)
+analyzer = SentimentAnalyzer('./sentiment_models/RoBERTa')
 
-### Training
-- `sentiment_models/BERT/` - Model BERT terlatih
-- `sentiment_models/DistilBERT/` - Model DistilBERT terlatih
+# Single prediction
+result = analyzer.predict("I love this game!")
+print(result)
+# {'text': 'I love this game!', 'sentiment': 'positive', 'confidence': 0.9999}
+
+# Batch prediction
+texts = ["Great event!", "Terrible gacha rates", "Game is okay"]
+results = analyzer.predict_batch(texts)
+```
+
+### Using Transformers PipelinetilBERT/` - Model DistilBERT terlatih
 - `sentiment_models/RoBERTa/` - Model RoBERTa terlatih
 - `sentiment_models/ALBERT/` - Model ALBERT terlatih
 - `sentiment_models/XLNET/` - Model XLNet terlatih
@@ -129,105 +265,122 @@ Berdasarkan trade-off antara accuracy, speed, dan resource usage:
 from transformers import pipeline
 
 # Load model
-pipe = pipeline("text-classification", model="./sentiment_models/RoBERTa")
+classifier = pipeline("text-classification", model="./sentiment_models/RoBERTa")
 
 # Predict
-result = pipe("I love this product!")
+result = classifier("Blue Archive is amazing!")
 print(result)
-# Output: [{'label': 'POSITIVE', 'score': 0.9999}]
-```
-
-### Batch Prediction
-
-```python
-texts = [
-    "I love this!",
-    "This is terrible",
-    "It's okay"
-]
-
-results = pipe(texts)
-for text, result in zip(texts, results):
-    print(f"{text} → {result['label']} ({result['score']:.4f})")
-```
-
-### With Custom Tokenization
-
-```python
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
-import torch
-
-model_path = "./sentiment_models/RoBERTa"
-tokenizer = AutoTokenizer.from_pretrained(model_path)
-model = AutoModelForSequenceClassification.from_pretrained(model_path)
-
-text = "This product is amazing!"
-inputs = tokenizer(text, return_tensors="pt", truncation=True, max_length=128)
-
-with torch.no_grad():
-    outputs = model(**inputs)
-    logits = outputs.logits
-    prediction = torch.argmax(logits, dim=-1).item()
-    score = torch.softmax(logits, dim=-1).max().item()
-
-print(f"Prediction: {prediction}, Score: {score:.4f}")
+# [{'label': 'POSITIVE', 'score': 0.9999}]
 ```
 
 ---
 
-## 📈 Training Details
+## 🎯 Model Recommendations
 
-### Data Split
-- Training: 80%
-- Validation: 20%
+| Use Case | Recommended Model | Reason |
+|----------|-------------------|--------|
+| **🏆 Best Accuracy** | RoBERTa | Top performance on sentiment tasks |
+| **⚡ Fast Inference** | DistilBERT | 60% faster, 95% accuracy retained |
+| **📱 Mobile/Edge** | ALBERT | 90% smaller, memory efficient |
+| **🧠 Complex Context** | XLNet | Best for nuanced understanding |
+| **⚖️ General Purpose** | BERT | Balanced, reliable, widely used |
 
-### Training Hyperparameters
+---
+
+## 📊 Output Files
+
+### Models & Results
+```
+sentiment_models/
+├── BERT/              # 110M parameters
+├── DistilBERT/        # 66M parameters  
+├── RoBERTa/           # 125M parameters (⭐ Best)
+├── ALBERT/            # 11M parameters
+└── XLNet/             # 340M parameters
+
+training_results.json           # Performance metrics
+model_performance_comparison.csv # Comparison table
+```
+
+### Visualizations
+```
+*.png                  # All generated visualizations
+- training_results_dashboard.png
+- model_comparison_bars.png
+- confusion_matrix_comparison.png
+- roc_auc_comparison.png
+- data_balancing_comparison.png
+- wordcloud_*.png
+```
+
+---
+
+## 🔧 Project Structure
+
+```
+.
+├── 📄 Core Scripts
+│   ├── train_transformer_models.py  # Main training script
+│   ├── inference_sentiment.py       # Inference & testing
+│   ├── sentiment_utils.py           # Utility library
+│   ├── balance_sentiment.py         # Data preprocessing
+│   └── dashboard.py                 # Streamlit dashboard
+│
+├── 📊 Visualization Scripts  
+│   ├── visualize_results.py
+│   ├── generate_training_curves.py
+│   ├── generate_roc_auc_curves.py
+│   └── wordcloud_dataset.py
+│
+├── 🐳 Docker
+│   ├── Dockerfile
+│   ├── docker-compose.yml
+│   └── docker-helper.sh
+│
+├── 📚 Documentation
+│   ├── README.md               # This file
+│   ├── QUICKSTART.md          # 5-step quick guide
+│   ├── INDEX.md               # Navigation guide
+│   └── DOCKER.md              # Docker guide
+│
+└── ⚙️ Config
+    ├── requirements.txt
+    ├── config.json
+    └── .gitignore
+```
+
+---
+
+## � Technical Details
+
+### Training Configuration
 - **Epochs**: 3
 - **Batch Size**: 16
-- **Learning Rate**: 5e-5 (default)
+- **Learning Rate**: 5e-5
 - **Warmup Steps**: 100
 - **Weight Decay**: 0.01
+- **Data Split**: 80% train, 20% validation
 
-### Metrics
-- Accuracy
-- Precision (weighted)
-- Recall (weighted)
-- F1-Score (weighted)
+### Evaluation Metrics
+- ✅ Accuracy
+- ✅ Precision (weighted)
+- ✅ Recall (weighted)  
+- ✅ F1-Score (weighted)
+- ✅ ROC-AUC curves
+- ✅ Confusion matrices
 
----
+### Hardware Requirements
 
-## 🔍 Performance Comparison
+| Component | Minimum | Recommended |
+|-----------|---------|-------------|
+| **Python** | 3.8+ | 3.9+ |
+| **RAM** | 8GB | 16GB+ |
+| **Storage** | 5GB | 10GB+ |
+| **GPU** | CPU only (slow) | NVIDIA GPU + CUDA |
 
-Hasil training akan ditampilkan dalam format:
-
-```
-TRAINING RESULTS SUMMARY
-════════════════════════════════════════════════════════════════════════════════
-
-   Rank          Model  Accuracy  Precision    Recall  F1-Score
-   1           RoBERTa    0.9234     0.9201    0.9234    0.9215
-   2              BERT    0.9102     0.9078    0.9102    0.9089
-   3         DistilBERT    0.8945     0.8912    0.8945    0.8928
-   4             XLNET    0.9187     0.9165    0.9187    0.9175
-   5            ALBERT    0.8756     0.8723    0.8756    0.8739
-```
-
----
-
-## ⚙️ System Requirements
-
-### Minimum
-- Python 3.8+
-- 8GB RAM
-- CPU (training akan lambat)
-
-### Recommended
-- Python 3.9+
-- 16GB+ RAM
-- NVIDIA GPU with CUDA support (untuk faster training)
-
-### For GPU Support (Optional)
+### GPU Support (Optional but Recommended)
 ```bash
+# Install PyTorch with CUDA 11.8
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
 
@@ -256,20 +409,100 @@ Pastikan sudah menjalankan `train_transformer_models.py` terlebih dahulu
 - [BERT Paper](https://arxiv.org/abs/1810.04805)
 - [RoBERTa Paper](https://arxiv.org/abs/1907.11692)
 - [DistilBERT Paper](https://arxiv.org/abs/1910.01108)
-- [ALBERT Paper](https://arxiv.org/abs/1909.11942)
-- [XLNet Paper](https://arxiv.org/abs/1906.08237)
-- [Hugging Face Transformers](https://huggingface.co/docs/transformers/)
+- [A� Troubleshooting
+
+### Out of Memory Error
+```python
+# Reduce batch size in training config
+'per_device_train_batch_size': 8  # default: 16
+```
+
+### Slow Training
+- ✅ Use GPU with CUDA support
+- ✅ Reduce number of epochs
+- ✅ Train models individually
+- ✅ Use DistilBERT or ALBERT (smaller models)
+
+### Model Loading Issues
+```bash
+# Ensure models are trained first
+python train_transformer_models.py
+
+# Check model directory exists
+ls sentiment_models/
+```
+
+---
+
+## 📚 Model References
+
+| Model | Paper | Publisher |
+|-------|-------|-----------|
+| **BERT** | [BERT: Pre-training of Deep Bidirectional Transformers](https://arxiv.org/abs/1810.04805) | Google AI |
+| **RoBERTa** | [RoBERTa: A Robustly Optimized BERT Pretraining Approach](https://arxiv.org/abs/1907.11692) | Facebook AI |
+| **DistilBERT** | [DistilBERT, a distilled version of BERT](https://arxiv.org/abs/1910.01108) | Hugging Face |
+| **ALBERT** | [ALBERT: A Lite BERT for Self-supervised Learning](https://arxiv.org/abs/1909.11942) | Google Research |
+| **XLNet** | [XLNet: Generalized Autoregressive Pretraining](https://arxiv.org/abs/1906.08237) | CMU & Google Brain |
+
+**Resources**:
+- 📖 [Hugging Face Transformers Documentation](https://huggingface.co/docs/transformers/)
+- 🎓 [Sentiment Analysis Guide](https://huggingface.co/tasks/sentiment-analysis)
+- 💾 [Model Hub](https://huggingface.co/models)
 
 ---
 
 ## 📝 License
 
-Semua model menggunakan lisensi dari Hugging Face Model Hub.
+This project uses models from Hugging Face Model Hub. Each model has its own license:
+- BERT, RoBERTa, ALBERT, XLNet: Apache 2.0
+- DistilBERT: Apache 2.0
+
+Project code: MIT License
 
 ---
 
-## 🤝 Support
+## 🤝 Contributing
 
-Jika ada pertanyaan atau masalah, silakan buat issue atau contact development team.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-Generated: 2025-12-24
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 👥 Authors
+
+**Blue Archive Sentiment Analysis Team**
+
+---
+
+## 🙏 Acknowledgments
+
+- [Hugging Face](https://huggingface.co/) for transformer models
+- [PyTorch](https://pytorch.org/) for deep learning framework
+- [Streamlit](https://streamlit.io/) for dashboard framework
+- Blue Archive community for dataset
+
+---
+
+## 📧 Contact & Support
+
+For questions, issues, or suggestions:
+- 🐛 **Issues**: [GitHub Issues](https://github.com/YOUR_USERNAME/blue-archive-sentiment-analysis/issues)
+- 📖 **Documentation**: See [QUICKSTART.md](QUICKSTART.md) and [INDEX.md](INDEX.md)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/YOUR_USERNAME/blue-archive-sentiment-analysis/discussions)
+
+---
+
+<div align="center">
+
+**⭐ Star this repository if you find it helpful!**
+
+Made with ❤️ for Blue Archive Community
+
+Last Updated: December 31, 2025
+
+</div>
