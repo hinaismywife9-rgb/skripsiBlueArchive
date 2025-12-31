@@ -46,12 +46,11 @@ sentiment_models/
 models/
 checkpoints/
 
-# Data files (JANGAN PUSH - data sensitif)
-*.xlsx
-*.csv
+# Data files - Dataset included for reproducibility
+# *.xlsx - INCLUDED
+# *.csv - INCLUDED (except results)
 data/
-data_train.csv
-training_data.csv
+prediction_history.json
 
 # Note: Images are now included for project documentation
 # *.png - INCLUDED
