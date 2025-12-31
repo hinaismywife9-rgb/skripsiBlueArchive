@@ -30,24 +30,15 @@ Proyek ini melatih dan membandingkan **5 model transformer state-of-the-art** un
 
 ### Training Curves
 
-<table>
-<tr>
-<td width="50%">
-
 ![Training Loss & Accuracy](training_loss_and_accuracy_curves.png)
 
-</td>
-<td width="50%">
-
 ![ROC-AUC Curves](roc_auc_comparison.png)
-
-</td>
-</tr>
-</table>
 
 ### Data Balancing Results
 
 ![Data Balancing Comparison](data_balancing_comparison.png)
+
+---
 
 ## 📋 Model-Model yang Digunakan
 
@@ -93,29 +84,17 @@ Proyek ini melatih dan membandingkan **5 model transformer state-of-the-art** un
 
 ---
 
-## � Visualizations
+## 📈 Visualizations
 
 ### Model Performance Metrics
 
-<table>
-<ython setup.py
-# Atau manual:
-pip install -r requirements.txt
-```
+**Detailed Metrics Comparison**
 
-### 3️⃣ Prepare & Balanctrics Comparison**
 ![Detailed Metrics](detailed_metrics_comparison.png)
-check_sentiment.py      # Analyze data distribution
-python balance_sentiment.py    # Clean & balance data
-```
 
-Output: `sentiment analysis BA_CLEANED.xlsx` dengan multiple balancing techniques
+**F1-Score Ranking**
 
-### 4️⃣anking](model_f1_ranking.png)
-
-</td>
-</tr>
-</table>
+![F1 Ranking](model_f1_ranking.png)
 
 ### Confusion Matrix Analysis
 
@@ -123,47 +102,27 @@ Output: `sentiment analysis BA_CLEANED.xlsx` dengan multiple balancing technique
 
 ### Data Distribution & Balancing
 
-<table>
-<tr>
-<td width="50%">
-
 **Before & After Balancing**
+
 ![Data Balancing](data_balancing_before_after.png)
 
-</td>
-<td width="50%">
-
 **Technique Comparison**
-![Balancing Techniques](data_balancing_technique_comparison.png)
 
-</td>
-</tr>
-</table>
+![Balancing Techniques](data_balancing_technique_comparison.png)
 
 ### Word Cloud Visualizations
 
-<table>
-<tr>
-<td width="33%">
-
 **Positive Sentiment**
+
 ![Positive Words](wordcloud_dataset_positive.png)
 
-</td>
-<td width="33%">
-
 **Negative Sentiment**
+
 ![Negative Words](wordcloud_dataset_negative.png)
 
-</td>
-<td width="33%">
-
 **Overall Dataset**
-![All Words](wordcloud_dataset_basic.png)
 
-</td>
-</tr>
-</table>
+![All Words](wordcloud_dataset_basic.png)
 
 ---
 
@@ -171,28 +130,33 @@ Output: `sentiment analysis BA_CLEANED.xlsx` dengan multiple balancing technique
 
 ### 1️⃣ Clone Repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/blue-archive-sentiment-analysis.git
-cd blue-archive-sentiment-analysis
+git clone https://github.com/hinaismywife9-rgb/skripsiBlueArchive.git
+cd skripsiBlueArchive
 ```
 
 ### 2️⃣ Install Dependencies
 
 ```bash
+python setup.py
+# Atau manual:
 pip install -r requirements.txt
 ```
 
-### 2. Prepare Data
+### 3️⃣ Prepare & Balance Data
 
-Pastikan file Excel sudah dibersihkan:
 ```bash
-python balance_sentiment.py
+python check_sentiment.py      # Analyze data distribution
+python balance_sentiment.py    # Clean & balance data
 ```
 
-Ini akan menghasilkan `sentiment analysis BA_CLEANED.xlsx` dengan data yang sudah balanced.
+Output: `sentiment analysis BA_CLEANED.xlsx` dengan multiple balancing techniques
 
-### 3. Train All 5 Models
+### 4️⃣ Train All 5 Models
 
 ```bash
+python train_transformer_models.py
+```
+
 ⏱️ **Training Time**: 30-60 menit (tergantung GPU/CPU)
 
 📁 **Outputs**:
@@ -201,9 +165,8 @@ Ini akan menghasilkan `sentiment analysis BA_CLEANED.xlsx` dengan data yang suda
 - `model_performance_comparison.csv` - Comparison table
 
 ### 5️⃣ Run Inference & Dashboard
-**Waktu training estimate**: 30-60 menit tergantung GPU/CPU
 
-### 4. Run Inference
+```bash
 # Test models
 python inference_sentiment.py
 
@@ -213,6 +176,33 @@ python dashboard.py
 ```
 
 🌐 Open browser: `http://localhost:8501`
+
+---
+
+## 🐳 Docker Deployment
+
+### Quick Start with Docker
+
+```bash
+# Build and run
+docker-compose up -d
+
+# Or use helper scripts
+./docker-helper.sh build
+./docker-helper.sh run
+```
+
+**Docker Features**:
+- ✅ Pre-configured environment
+- ✅ Auto-start dashboard on port 8501
+- ✅ Volume mounting for models
+- ✅ GPU support (if available)
+
+---
+
+## 💻 Usage Examples
+
+### Simple Prediction
 
 ```python
 from sentiment_utils import SentimentAnalyzer
@@ -230,36 +220,7 @@ texts = ["Great event!", "Terrible gacha rates", "Game is okay"]
 results = analyzer.predict_batch(texts)
 ```
 
-### Using Transformers PipelinetilBERT/` - Model DistilBERT terlatih
-- `sentiment_models/RoBERTa/` - Model RoBERTa terlatih
-- `sentiment_models/ALBERT/` - Model ALBERT terlatih
-- `sentiment_models/XLNET/` - Model XLNet terlatih
-
-### Results
-- `training_results.json` - Hasil training dalam format JSON
-- `model_performance_comparison.csv` - Tabel perbandingan performance
-- `model_training_report.txt` - Laporan training lengkap
-- `example_predictions.csv` - Contoh prediksi
-
----
-
-## 🎯 Recommendation
-
-Berdasarkan trade-off antara accuracy, speed, dan resource usage:
-
-| Use Case | Recommended Model | Reason |
-|----------|-------------------|--------|
-| **Best Accuracy** | RoBERTa | Consistently best performance on sentiment tasks |
-| **Fast Inference** | DistilBERT | Good balance: 60% faster, 95% accuracy |
-| **Mobile/Edge** | ALBERT | 90% smaller, very fast |
-| **Complex Context** | XLNet | Best for nuanced understanding |
-| **General Purpose** | BERT | Balanced, reliable, widely used |
-
----
-
-## 💻 Usage Examples
-
-### Predict Single Text
+### Using Transformers Pipeline
 
 ```python
 from transformers import pipeline
@@ -351,7 +312,7 @@ model_performance_comparison.csv # Comparison table
 
 ---
 
-## � Technical Details
+## 🔬 Technical Details
 
 ### Training Configuration
 - **Epochs**: 3
@@ -386,30 +347,7 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 
 ---
 
-## 🛠️ Troubleshooting
-
-### Out of Memory Error
-```python
-# Kurangi batch size di training_config
-'per_device_train_batch_size': 8  # dari 16
-```
-
-### Slow Training
-- Gunakan GPU (install CUDA support)
-- Kurangi epochs
-- Kurangi jumlah models (jalankan individually)
-
-### Model Not Found
-Pastikan sudah menjalankan `train_transformer_models.py` terlebih dahulu
-
----
-
-## 📚 References
-
-- [BERT Paper](https://arxiv.org/abs/1810.04805)
-- [RoBERTa Paper](https://arxiv.org/abs/1907.11692)
-- [DistilBERT Paper](https://arxiv.org/abs/1910.01108)
-- [A� Troubleshooting
+## 🐛 Troubleshooting
 
 ### Out of Memory Error
 ```python
@@ -491,9 +429,9 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 📧 Contact & Support
 
 For questions, issues, or suggestions:
-- 🐛 **Issues**: [GitHub Issues](https://github.com/YOUR_USERNAME/blue-archive-sentiment-analysis/issues)
+- 🐛 **Issues**: [GitHub Issues](https://github.com/hinaismywife9-rgb/skripsiBlueArchive/issues)
 - 📖 **Documentation**: See [QUICKSTART.md](QUICKSTART.md) and [INDEX.md](INDEX.md)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/YOUR_USERNAME/blue-archive-sentiment-analysis/discussions)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/hinaismywife9-rgb/skripsiBlueArchive/discussions)
 
 ---
 
